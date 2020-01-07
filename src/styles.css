@@ -2,17 +2,10 @@
   font-family: sans-serif;
 }
 
-.dropable-container {
-  width: 40rem;
-  height: 20rem;
-  border: 1px dashed #000;
-}
-
+ 
 .dd-demo-container {
   display: flex;
   flex-direction: row;
 }
 
-.focus-drop-container {
-  border: 1px dashed red;
-}
+ 

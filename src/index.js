@@ -2,8 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import SimpleTreeContainer from "./SimpleTreeContainer";
 
-import "rc-tree/assets/index.less";
-
 import "./styles.css";
 
 function App() {

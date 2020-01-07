@@ -5,6 +5,7 @@ import React from "react";
 import Tree, { TreeNode } from "rc-tree";
 
 import "./rc-tree.css";
+import { object } from "prop-types";
 
 const onEnterActive = node => {
   return { height: node.scrollHeight };
@@ -21,6 +22,7 @@ const treeData = [
     key: "0-0",
     title: "parent 1",
     checkable: true,
+    className: "rc-tree-parent-style",
     children: [
       {
         key: "0-0-0",
@@ -35,11 +37,7 @@ const treeData = [
         children: [
           { key: "0-0-1-0", title: "parent 1-2-0", checkable: false },
           { key: "0-0-1-1", title: "parent 1-2-1", checkable: false },
-          { key: "0-0-1-2", title: "parent 1-2-1", checkable: false },
-          { key: "0-0-1-3", title: "parent 1-2-1", checkable: false },
-          { key: "0-0-1-4", title: "parent 1-2-1", checkable: false },
-          { key: "0-0-1-5", title: "parent 1-2-1", checkable: false },
-          { key: "0-0-1-6", title: "parent 1-2-1", checkable: false }
+          { key: "0-0-1-2", title: "parent 1-2-1", checkable: false }
         ]
       }
     ]
@@ -65,6 +63,16 @@ class SimpleTreeContainer extends React.Component {
   };
 
   render() {
+    const switcher = obj => {
+      if (obj.isLeaf) {
+        return;
+      }
+      return (
+        <span className="rc-tree-switcher_open_operation">
+          {obj.expanded ? "-" : "+"}
+        </span>
+      );
+    };
     return (
       <div className="dd-demo-container">
         <Tree
@@ -78,6 +86,7 @@ class SimpleTreeContainer extends React.Component {
           selectedKeys={this.state.selectedKeys}
           onSelect={this.onSelect}
           autoExpandParent
+          switcherIcon={switcher}
         />
       </div>
     );
