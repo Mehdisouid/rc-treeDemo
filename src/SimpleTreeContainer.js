@@ -2,10 +2,10 @@
 /* eslint no-alert:0 */
 /* eslint jsx-a11y/no-noninteractive-element-interactions:0 */
 import React from "react";
-import Tree, { TreeNode } from "rc-tree";
+import Tree from "rc-tree";
+import classNames from "classnames";
 
 import "./rc-tree.css";
-import { object } from "prop-types";
 
 const onEnterActive = node => {
   return { height: node.scrollHeight };
@@ -22,22 +22,22 @@ const treeData = [
     key: "0-0",
     title: "parent 1",
     checkable: true,
-    className: "rc-tree-parent-style",
+    icon: <input type="checkbox" className="customize-icon" />,
     children: [
       {
         key: "0-0-0",
-        checkable: false,
+
         title: "parent 1-1",
-        children: [{ key: "0-0-0-0", checkable: false, title: "parent 1-1-0" }]
+        children: [{ key: "0-0-0-0", title: "parent 1-1-0" }]
       },
       {
         key: "0-0-1",
         title: "parent 1-2",
-        checkable: false,
+
         children: [
-          { key: "0-0-1-0", title: "parent 1-2-0", checkable: false },
-          { key: "0-0-1-1", title: "parent 1-2-1", checkable: false },
-          { key: "0-0-1-2", title: "parent 1-2-1", checkable: false }
+          { key: "0-0-1-0", title: "parent 1-2-0" },
+          { key: "0-0-1-1", title: "parent 1-2-1" },
+          { key: "0-0-1-2", title: "parent 1-2-1" }
         ]
       }
     ]
@@ -73,18 +73,21 @@ class SimpleTreeContainer extends React.Component {
         </span>
       );
     };
+    const Icon = ({ selected }) => (
+      <span
+        className={classNames("customize-icon", selected && "selected-icon")}
+      />
+    );
     return (
       <div className="dd-demo-container">
         <Tree
           motion={motion}
           showLine
           checkStrictly
-          checkable
-          showIcon={false}
+          selectable={false}
+          showIcon
           treeData={treeData}
           defaultExpandedKeys={this.state.defaultExpandedKeys}
-          selectedKeys={this.state.selectedKeys}
-          onSelect={this.onSelect}
           autoExpandParent
           switcherIcon={switcher}
         />
